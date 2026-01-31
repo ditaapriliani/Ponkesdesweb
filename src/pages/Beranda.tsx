@@ -1,8 +1,9 @@
 import { ArrowRight, Heart, Users, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-ponkesdes.jpg";
 
-const HeroSection = () => {
+const Beranda = () => {
   const stats = [
     { icon: Heart, value: "1000+", label: "Pasien Dilayani" },
     { icon: Users, value: "5+", label: "Tenaga Medis" },
@@ -10,7 +11,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section id="beranda" className="relative min-h-screen flex items-center bg-gradient-hero pt-20">
+    <section className="relative min-h-screen flex items-center bg-gradient-hero pt-20">
       {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
@@ -37,12 +38,14 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg">
-                Lihat Layanan Kami
-                <ArrowRight className="w-5 h-5" />
+              <Button variant="hero" size="lg" asChild>
+                <Link to="/layanan">
+                  Lihat Layanan Kami
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
               </Button>
-              <Button variant="outline" size="lg">
-                Jadwal Pelayanan
+              <Button variant="outline" size="lg" asChild>
+                <Link to="/kontak">Jadwal Pelayanan</Link>
               </Button>
             </div>
 
@@ -90,4 +93,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default Beranda;

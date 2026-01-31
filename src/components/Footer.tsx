@@ -1,4 +1,5 @@
 import { Heart, Phone, Mail, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,14 +10,14 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-lg">+</span>
               </div>
               <div>
                 <span className="font-bold text-lg">Ponkesdes</span>
               </div>
-            </div>
+            </Link>
             <p className="text-card/70 text-sm leading-relaxed">
               Pondok Kesehatan Desa - Melayani kesehatan masyarakat dengan sepenuh hati.
             </p>
@@ -26,11 +27,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Menu Cepat</h4>
             <ul className="space-y-2 text-card/70 text-sm">
-              <li><a href="#beranda" className="hover:text-primary transition-colors">Beranda</a></li>
-              <li><a href="#layanan" className="hover:text-primary transition-colors">Layanan</a></li>
-              <li><a href="#tentang" className="hover:text-primary transition-colors">Tentang Kami</a></li>
-              <li><a href="#tim" className="hover:text-primary transition-colors">Tim Medis</a></li>
-              <li><a href="#kontak" className="hover:text-primary transition-colors">Kontak</a></li>
+              <li><Link to="/" className="hover:text-primary transition-colors">Beranda</Link></li>
+              <li><Link to="/layanan" className="hover:text-primary transition-colors">Layanan</Link></li>
+              <li><Link to="/tentang" className="hover:text-primary transition-colors">Tentang Kami</Link></li>
+              <li><Link to="/tim" className="hover:text-primary transition-colors">Tim Medis</Link></li>
+              <li><Link to="/kontak" className="hover:text-primary transition-colors">Kontak</Link></li>
             </ul>
           </div>
 
