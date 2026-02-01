@@ -1,93 +1,208 @@
-import { ArrowRight, Heart, Users, Clock } from "lucide-react";
+import { ArrowRight, MapPin, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-ponkesdes.jpg";
+import gallery1 from "@/assets/gallery-1.png";
+import gallery2 from "@/assets/gallery-2.png";
+import gallery3 from "@/assets/gallery-3.png";
 
-const stats = [
-
+const galleryItems = [
+  {
+    image: gallery1,
+    title: "Pemeriksaan Kesehatan",
+    description: "Layanan pemeriksaan umum rutin untuk warga desa."
+  },
+  {
+    image: gallery2,
+    title: "Penyuluhan Posyandu",
+    description: "Kegiatan edukasi kesehatan untuk ibu dan anak."
+  },
+  {
+    image: gallery3,
+    title: "Kegiatan Masyarakat",
+    description: "Program jalan sehat dan olahraga bersama warga."
+  }
 ];
 
 const Beranda = () => {
   return (
-    <section className="relative min-h-screen flex items-center bg-gradient-hero pt-20">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      </div>
+    <div className="flex flex-col">
+      <section className="relative min-h-[90vh] flex items-center bg-gradient-hero pt-20">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full " />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-accent/5 rounded-full " />
+        </div>
 
-      <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div className="space-y-8 animate-slide-in-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary rounded-full text-secondary-foreground text-sm font-medium">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              Layanan Kesehatan Desa Terpercaya
+        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="space-y-8 animate-slide-in-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary rounded-full text-secondary-foreground text-sm font-medium">
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                Layanan Kesehatan Desa Terpercaya
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight">
+                Kesehatan Anda,{" "}
+                <span className="text-gradient">Prioritas Kami</span>
+              </h1>
+
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
+                Ponkesdes hadir memberikan layanan kesehatan dasar yang berkualitas untuk seluruh
+                masyarakat desa. Kami berkomitmen menjadi mitra kesehatan keluarga Anda.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button variant="hero" size="lg" asChild>
+                  <Link to="/layanan">
+                    Lihat Layanan Kami
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                </Button>
+                <Button variant="outline" size="lg" asChild>
+                  <Link to="/kontak">Jadwal Pelayanan</Link>
+                </Button>
+              </div>
+
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-tight">
-              Kesehatan Anda,{" "}
-              <span className="text-gradient">Prioritas Kami</span>
-            </h1>
+            {/* Video Hero */}
+            <div className="relative animate-slide-in-right">
+              <div className="relative rounded-3xl overflow-hidden shadow-card aspect-video">
+                <video
+                  autoPlay
+                  loop
+                  playsInline
+                  className="w-full h-full object-cover"
+                  poster={heroImage}
+                >
+                  <source src="/hero-video.mp4" type="video/mp4" />
+                  <img
+                    src={heroImage}
+                    alt="Ponkesdes - Pondok Kesehatan Desa"
+                    className="w-full h-auto object-cover"
+                  />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
+              </div>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed">
-              Ponkesdes hadir memberikan layanan kesehatan dasar yang berkualitas untuk seluruh
-              masyarakat desa. Kami berkomitmen menjadi mitra kesehatan keluarga Anda.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" asChild>
-                <Link to="/layanan">
-                  Lihat Layanan Kami
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/kontak">Jadwal Pelayanan</Link>
-              </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
-              {stats.map((stat, index) => (
-                <div key={index} className="text-center sm:text-left">
-                  <div className="flex items-center justify-center sm:justify-start gap-2 mb-2">
-                    <stat.icon className="w-5 h-5 text-primary" />
-                    <span className="text-2xl md:text-3xl font-bold text-foreground">{stat.value}</span>
+              {/* Floating Card */}
+              <div className="absolute -bottom-6 -left-6 bg-card rounded-2xl p-4 shadow-card animate-float hidden md:block">
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/logo.jpg"
+                    alt="Logo"
+                    className="w-12 h-12 rounded-xl object-cover"
+                  />
+                  <div>
+                    <p className="font-semibold text-foreground">Buka Sekarang</p>
+                    <p className="text-sm text-muted-foreground">08:00 - 16:00 WIB</p>
                   </div>
-                  <p className="text-sm text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Image */}
-          <div className="relative animate-slide-in-right">
-            <div className="relative rounded-3xl overflow-hidden shadow-card">
-              <img
-                src={heroImage}
-                alt="Ponkesdes - Pondok Kesehatan Desa"
-                className="w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
-            </div>
-
-            {/* Floating Card */}
-            <div className="absolute -bottom-6 -left-6 bg-card rounded-2xl p-4 shadow-card animate-float hidden md:block">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
-                  <Heart className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Buka Sekarang</p>
-                  <p className="text-sm text-muted-foreground">08:00 - 16:00 WIB</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Info Section */}
+      <section className="py-12 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+            {/* Address & Map Card */}
+            <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50 flex flex-col animate-fade-in">
+              <div className="p-6 md:p-8 flex gap-4">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-foreground mb-2">Alamat Kantor</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Jl. Kesehatan No. 01, Desa Sejahtera, Kecamatan Makmur, <br className="hidden sm:block" />
+                    Kabupaten Sentosa
+                  </p>
+                </div>
+              </div>
+              <div className="flex-grow min-h-[300px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.92682669924784!2d112.58034965643901!3d-8.016539527906241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e789d25a20780b9%3A0x775a4a74cb8989e!2sTaman%20Kanak%20Kanak%20Dharma%20Wanita%20-%2002!5e0!3m2!1sid!2sid!4v1769871884902!5m2!1sid!2sid"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Lokasi Ponkesdes"
+                />
+              </div>
+            </div>
+
+            {/* Important Notes */}
+            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-sm border border-border/50 flex gap-4 animate-fade-in" style={{ animationDelay: '100ms' }}>
+              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <FileText className="w-6 h-6 text-accent" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-4">Catatan Penting</h3>
+                <ul className="space-y-4 text-muted-foreground">
+                  <li className="flex items-start gap-3">
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                    <p className="leading-relaxed">Bawa kartu identitas (KTP/KK) & Kartu BPJS asli atau fotokopi saat berkunjung.</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                    <p className="leading-relaxed">Kasus gawat darurat akan selalu didahulukan penanganannya demi keselamatan pasien.</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                    <p className="leading-relaxed">Pendaftaran pasien umum ditutup 30 menit sebelum jam operasional berakhir.</p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                    <p className="leading-relaxed">Jadwal pelayanan sewaktu-waktu dapat berubah pada hari libur nasional.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Galeri Kegiatan</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Dokumentasi berbagai kegiatan pelayanan dan pengabdian kesehatan masyarakat di Ponkesdes.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {galleryItems.map((item, index) => (
+              <div
+                key={index}
+                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                  <h3 className="text-white font-bold text-xl mb-1">{item.title}</h3>
+                  <p className="text-white/80 text-sm">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

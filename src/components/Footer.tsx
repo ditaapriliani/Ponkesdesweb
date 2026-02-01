@@ -1,25 +1,35 @@
 import { Heart, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { branding } from "@/config/brandingfooter";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-foreground text-card py-12 md:py-16">
+    <footer className="text-card py-12 md:py-16" style={{ backgroundColor: "#123321" }}>
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">+</span>
-              </div>
-              <div>
-                <span className="font-bold text-lg">Ponkesdes</span>
+              {branding.footerLogo.type === "image" ? (
+                <img
+                  src={branding.footerLogo.imagePath}
+                  alt={branding.name}
+                  className="w-16 h-16 rounded-xl object-contain"
+                />
+              ) : (
+                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-lg">{branding.footerLogo.icon}</span>
+                </div>
+              )}
+              <div className="flex flex-col">
+                <span className="font-bold text-lg leading-tight">{branding.name}</span>
+                <span className="text-xs text-card/60">{branding.description}</span>
               </div>
             </Link>
-            <p className="text-card/70 text-sm leading-relaxed">
-              Pondok Kesehatan Desa - Melayani kesehatan masyarakat dengan sepenuh hati.
+            <p className="text-card/70 text-sm leading-relaxed text-justify">
+              {branding.footerDescription}
             </p>
           </div>
 
@@ -27,11 +37,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Menu Cepat</h4>
             <ul className="space-y-2 text-card/70 text-sm">
-              <li><Link to="/" className="hover:text-primary transition-colors">Beranda</Link></li>
-              <li><Link to="/layanan" className="hover:text-primary transition-colors">Layanan</Link></li>
-              <li><Link to="/tentang" className="hover:text-primary transition-colors">Tentang Kami</Link></li>
-              <li><Link to="/syarat-berkas" className="hover:text-primary transition-colors">Syarat Berkas</Link></li>
-              <li><Link to="/kontak" className="hover:text-primary transition-colors">Kontak</Link></li>
+              <li><Link to="/" className="hover:text-brand-yellow transition-colors">Beranda</Link></li>
+              <li><Link to="/layanan" className="hover:text-brand-yellow transition-colors">Layanan</Link></li>
+              <li><Link to="/tentang" className="hover:text-brand-yellow transition-colors">Tentang Kami</Link></li>
+              <li><Link to="/syarat-berkas" className="hover:text-brand-yellow transition-colors">Syarat Berkas</Link></li>
+              <li><Link to="/kontak" className="hover:text-brand-yellow transition-colors">Kontak</Link></li>
             </ul>
           </div>
 
@@ -57,7 +67,9 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>(0341) 123-4567</span>
+                <a href={`https://wa.me/${branding.whatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-yellow transition-colors">
+                  +{branding.whatsapp}
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
@@ -71,7 +83,7 @@ const Footer = () => {
         <div className="border-t border-card/10 pt-8">
           <div className="flex justify-center items-center gap-4">
             <p className="text-card/70 text-sm text-center">
-              © {currentYear} KKN 10 - Wiloso - Gondowangi - Universitas Merdeka Malang
+              © {currentYear} KKN 10 Wiloso - Gondowangi - Universitas Merdeka Malang
             </p>
           </div>
         </div>

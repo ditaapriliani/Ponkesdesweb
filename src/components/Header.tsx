@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+import { branding } from "@/config/branding";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,17 +21,25 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg md:text-xl">+</span>
-            </div>
+            {branding.logo.type === "image" ? (
+              <img
+                src={branding.logo.imagePath}
+                alt={branding.name}
+                className="w-10 h-10 md:w-12 md:h-12 object-contain"
+              />
+            ) : (
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg md:text-xl">{branding.logo.icon}</span>
+              </div>
+            )}
             <div className="flex flex-col">
-              <span className="font-bold text-foreground text-lg md:text-xl leading-tight">Ponkesdes</span>
-              <span className="text-xs text-muted-foreground hidden sm:block">Pondok Kesehatan Desa</span>
+              <span className="font-bold text-foreground text-lg md:text-xl leading-tight">{branding.name}</span>
+              <span className="text-xs text-muted-foreground hidden sm:block">{branding.description}</span>
             </div>
           </Link>
 
@@ -40,9 +49,9 @@ const Header = () => {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`font-medium transition-colors duration-200 ${isActive(link.href)
-                  ? "text-primary"
-                  : "text-muted-foreground hover:text-primary"
+                className={`transition-colors duration-200 ${isActive(link.href)
+                  ? "text-primary font-bold"
+                  : "text-muted-foreground font-medium hover:text-brand-yellow"
                   }`}
               >
                 {link.label}
@@ -50,13 +59,12 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <Button variant="hero" size="default" asChild>
-              <Link to="/kontak">
+              <a href={`https://wa.me/${branding.whatsapp}`} target="_blank" rel="noopener noreferrer">
                 <Phone className="w-4 h-4" />
                 Hubungi Kami
-              </Link>
+              </a>
             </Button>
           </div>
 
@@ -78,9 +86,9 @@ const Header = () => {
                   key={link.href}
                   to={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`px-4 py-3 rounded-lg font-medium transition-all duration-200 ${isActive(link.href)
-                    ? "text-primary bg-secondary"
-                    : "text-muted-foreground hover:text-primary hover:bg-secondary"
+                  className={`px-4 py-3 rounded-lg transition-all duration-200 ${isActive(link.href)
+                    ? "text-primary bg-secondary font-bold"
+                    : "text-muted-foreground font-medium hover:text-brand-yellow hover:bg-secondary"
                     }`}
                 >
                   {link.label}
@@ -88,10 +96,10 @@ const Header = () => {
               ))}
               <div className="px-4 pt-2">
                 <Button variant="hero" className="w-full" asChild>
-                  <Link to="/kontak" onClick={() => setIsMenuOpen(false)}>
+                  <a href={`https://wa.me/${branding.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)}>
                     <Phone className="w-4 h-4" />
                     Hubungi Kami
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>

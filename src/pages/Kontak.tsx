@@ -1,17 +1,14 @@
 import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import headerBg from "@/assets/header-bg.png";
+import { branding } from "@/config/branding";
 
 const Kontak = () => {
   const contactInfo = [
     {
-      icon: MapPin,
-      title: "Alamat",
-      content: "Jl. Kesehatan No. 01, Desa Sejahtera, Kecamatan Makmur, Kabupaten Sentosa",
-    },
-    {
       icon: Phone,
-      title: "Telepon",
-      content: "(0341) 123-4567",
+      title: "WhatsApp",
+      content: `+${branding.whatsapp}`,
     },
     {
       icon: Mail,
@@ -38,8 +35,16 @@ const Kontak = () => {
   return (
     <div className="pt-20 min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-gradient-hero py-16 md:py-24">
-        <div className="container mx-auto px-4">
+      <div
+        className="relative py-16 md:py-24 overflow-hidden"
+        style={{
+          backgroundImage: `url(${headerBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <div className="absolute inset-0 bg-background/40" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto animate-fade-in">
             <span className="inline-block px-4 py-2 bg-secondary rounded-full text-secondary-foreground text-sm font-medium mb-4">
               Hubungi Kami
@@ -78,25 +83,14 @@ const Kontak = () => {
               ))}
 
               <div className="pt-4">
-                <Button variant="hero" size="lg" className="w-full sm:w-auto">
-                  <Phone className="w-5 h-5" />
-                  Hubungi Sekarang
+                <Button variant="hero" size="lg" className="w-full sm:w-auto" asChild>
+                  <a href={`https://wa.me/${branding.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                    <Phone className="w-5 h-5" />
+                    Hubungi Sekarang melalui WA
+                  </a>
                 </Button>
               </div>
 
-              {/* Map */}
-              <div className="mt-8 bg-card rounded-2xl overflow-hidden shadow-card border border-border/50 h-64">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.92682669924784!2d112.58034965643901!3d-8.016539527906241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e789d25a20780b9%3A0x775a4a74cb8989e!2sTaman%20Kanak%20Kanak%20Dharma%20Wanita%20-%2002!5e0!3m2!1sid!2sid!4v1769871884902!5m2!1sid!2sid"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Lokasi Ponkesdes"
-                />
-              </div>
             </div>
 
             {/* Schedule Table */}
@@ -128,24 +122,6 @@ const Kontak = () => {
                 </div>
               </div>
 
-              {/* Additional Info */}
-              <div className="mt-6 bg-secondary/50 rounded-2xl p-6 md:p-8">
-                <h3 className="text-lg font-bold text-foreground mb-4">Catatan Penting</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    Untuk keadaan darurat, silakan hubungi langsung nomor telepon kami.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    Bawa kartu identitas dan kartu BPJS jika ada saat berkunjung.
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    Jadwal dapat berubah sewaktu-waktu pada hari libur nasional.
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
