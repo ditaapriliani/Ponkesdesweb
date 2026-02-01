@@ -1,4 +1,5 @@
-import { ArrowRight, MapPin, FileText } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, MapPin, FileText, Volume2, VolumeX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-ponkesdes.jpg";
@@ -25,6 +26,8 @@ const galleryItems = [
 ];
 
 const Beranda = () => {
+  const [isMuted, setIsMuted] = useState(true);
+
   return (
     <div className="flex flex-col">
       <section className="relative min-h-[90vh] flex items-center bg-gradient-hero pt-20">
@@ -73,6 +76,7 @@ const Beranda = () => {
                 <video
                   autoPlay
                   loop
+                  muted={isMuted}
                   playsInline
                   className="w-full h-full object-cover"
                   poster={heroImage}
@@ -85,6 +89,19 @@ const Beranda = () => {
                   />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
+
+                {/* Mute/Unmute Toggle */}
+                <button
+                  onClick={() => setIsMuted(!isMuted)}
+                  className="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/60 transition-colors border border-white/20"
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-5 h-5" />
+                  ) : (
+                    <Volume2 className="w-5 h-5" />
+                  )}
+                </button>
               </div>
 
               {/* Floating Card */}
