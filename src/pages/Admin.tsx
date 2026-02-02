@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { JSONBIN_CONFIG } from "@/config/jsonbin";
 
 const Admin = () => {
     const { schedule, updateSchedule } = useSchedule();
@@ -61,9 +62,29 @@ const Admin = () => {
         handleInputChange(index, 'time', newTimeStr);
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
+        // Update local state and localStorage immediately
         updateSchedule(localSchedule);
-        toast.success("Jadwal Berhasil Diperbarui");
+
+        // Sync with JSONbin.io if configured
+        if (JSONBIN_CONFIG.BIN_ID !== 'REPLACE_WITH_YOUR_BIN_ID') {
+            const promise = fetch(`${JSONBIN_CONFIG.BASE_URL}/${JSONBIN_CONFIG.BIN_ID}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': JSONBIN_CONFIG.API_KEY
+                },
+                body: JSON.stringify(localSchedule)
+            });
+
+            toast.promise(promise, {
+                loading: 'Menyinkronkan dengan server...',
+                success: 'Jadwal Berhasil Diperbarui & Disinkronkan',
+                error: (err) => `Gagal menyinkronkan: ${err.message}`
+            });
+        } else {
+            toast.success("Jadwal Berhasil Diperbarui (Lokal)");
+        }
     };
 
     const handleLogout = () => {
