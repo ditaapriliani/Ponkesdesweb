@@ -93,7 +93,7 @@ const Beranda = () => {
                   />
                   <div>
                     <p className="font-semibold text-foreground">Jam Operasional</p>
-                    <p className="text-sm text-muted-foreground">08:00 - 16:00 WIB</p>
+                    <p className="text-sm text-muted-foreground">08.00 - 16.00 WIB</p>
                   </div>
                 </div>
               </div>
@@ -153,7 +153,7 @@ const Beranda = () => {
                 <ul className="space-y-4 text-muted-foreground">
                   <li className="flex items-start gap-3">
                     <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    <p className="leading-relaxed">Bawa kartu identitas (KTP/KK) saat berkunjung.</p>
+                    <p className="leading-relaxed">Membawa kartu identitas (KTP/KK) saat berkunjung.</p>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />

@@ -70,7 +70,7 @@ const Footer = () => {
                   <li key={index} className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
                     <a href={`https://wa.me/${item.number}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-yellow transition-colors">
-                      +{item.number} ({item.label})
+                      +{item.number} {item.label}
                     </a>
                   </li>
                 ))

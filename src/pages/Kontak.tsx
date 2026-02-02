@@ -27,7 +27,7 @@ const Kontak = () => {
     {
       icon: Clock,
       title: "Jam Operasional",
-      content: "Senin - Sabtu: 07.30 - 12.00 WIB",
+      content: "Senin - Jumat: 08.00 - 16.00 WIB, Sabtu: 08.00 - 12.00 WIB",
     },
   ];
 
@@ -95,8 +95,7 @@ const Kontak = () => {
                     <thead>
                       <tr className="border-b border-border">
                         <th className="text-left py-3 text-muted-foreground font-medium">Hari</th>
-                        <th className="text-left py-3 text-muted-foreground font-medium">Tanggal</th>
-                        <th className="text-left py-3 text-muted-foreground font-medium">Jam</th>
+                        <th className="text-left py-3 text-muted-foreground font-medium">Buka - Tutup</th>
                         <th className="text-left py-3 text-muted-foreground font-medium">Layanan</th>
                       </tr>
                     </thead>
@@ -104,7 +103,6 @@ const Kontak = () => {
                       {schedule.map((item, index) => (
                         <tr key={index} className="border-b border-border/50 last:border-0">
                           <td className="py-4 text-foreground font-medium">{item.day}</td>
-                          <td className="py-4 text-muted-foreground">{item.date}</td>
                           <td className="py-4 text-primary font-semibold">{item.time}</td>
                           <td className="py-4 text-muted-foreground">{item.service}</td>
                         </tr>

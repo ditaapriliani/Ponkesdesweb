@@ -18,10 +18,9 @@ const Layanan = () => {
     {
       icon: Baby,
       title: "Pelayanan Kesehatan Klaster 2",
-      description: "Pelayanan kesehatan yang ditujukan untuk ibu hamil, ibu nifas, bayi, balita dan remaja.",
+      description: "Pelayanan kesehatan yang ditujukan untuk ibu hamil, bayi, balita dan remaja.",
       details: [
         "Pemeriksaan kehamilan",
-        "Pemeriksaan ibu nifas",
         "Pemeriksaan bayi",
         "Pemeriksaan balita",
         "Pemeriksaan remaja",
