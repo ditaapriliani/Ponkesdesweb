@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { startOfWeek, addDays, format } from 'date-fns';
+import { id } from 'date-fns/locale';
 
 export interface ScheduleItem {
     day: string;
@@ -7,13 +9,16 @@ export interface ScheduleItem {
     service: string;
 }
 
+const getToday = () => new Date();
+const monday = startOfWeek(getToday(), { weekStartsOn: 1 });
+
 const DEFAULT_SCHEDULE: ScheduleItem[] = [
-    { day: "Senin", date: "02 Feb", time: "08.00 - 16.00 WIB", service: "Pelayanan Umum" },
-    { day: "Selasa", date: "03 Feb", time: "08.00 - 16.00 WIB", service: "Pelayanan Umum + KIA" },
-    { day: "Rabu", date: "04 Feb", time: "08.00 - 16.00 WIB", service: "Pelayanan Umum" },
-    { day: "Kamis", date: "05 Feb", time: "08.00 - 16.00 WIB", service: "Pelayanan Umum + Imunisasi" },
-    { day: "Jumat", date: "06 Feb", time: "08.00 - 16.00 WIB", service: "Pelayanan Umum + Posbindu" },
-    { day: "Sabtu", date: "07 Feb", time: "08.00 - 12.00 WIB", service: "Pelayanan Umum" },
+    { day: "Senin", date: format(monday, "dd MMM", { locale: id }), time: "08.00 - 16.00 WIB", service: "Pelayanan Umum" },
+    { day: "Selasa", date: format(addDays(monday, 1), "dd MMM", { locale: id }), time: "08.00 - 16.00 WIB", service: "Pelayanan Umum + KIA" },
+    { day: "Rabu", date: format(addDays(monday, 2), "dd MMM", { locale: id }), time: "08.00 - 16.00 WIB", service: "Pelayanan Umum" },
+    { day: "Kamis", date: format(addDays(monday, 3), "dd MMM", { locale: id }), time: "08.00 - 16.00 WIB", service: "Pelayanan Umum + Imunisasi" },
+    { day: "Jumat", date: format(addDays(monday, 4), "dd MMM", { locale: id }), time: "08.00 - 16.00 WIB", service: "Pelayanan Umum + Posbindu" },
+    { day: "Sabtu", date: format(addDays(monday, 5), "dd MMM", { locale: id }), time: "08.00 - 12.00 WIB", service: "Pelayanan Umum" },
     { day: "Minggu", date: "-", time: "Tutup", service: "-" },
 ];
 
