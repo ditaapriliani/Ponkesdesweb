@@ -16,18 +16,13 @@ const Tentang = () => {
 
   const team = [
     {
-      name: "dr. Ahmad Wijaya",
-      role: "Dokter Umum",
-      image: doctorImage,
-    },
-    {
-      name: "Siti Nurhaliza, Amd.Keb",
-      role: "Bidan Desa",
+      name: "Ibu Frida",
+      role: "Perawat Desa",
       image: bidanImage,
     },
     {
-      name: "Dewi Kartika, Amd.Kep",
-      role: "Perawat",
+      name: "Ibu Wayan",
+      role: "Bidan Desa",
       image: nurseImage,
     },
   ];
@@ -44,7 +39,7 @@ const Tentang = () => {
           backgroundPosition: 'center'
         }}
       >
-        <div className="absolute inset-0 bg-background/40" />
+        <div className="absolute inset-0 bg-background/70" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto animate-fade-in">
             <span className="inline-block px-4 py-2 bg-secondary rounded-full text-secondary-foreground text-sm font-medium mb-4">
@@ -131,9 +126,7 @@ const Tentang = () => {
                   <h3 className="text-xl font-bold text-foreground">Visi</h3>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
-                  Menjadi fasilitas kesehatan desa yang unggul dalam memberikan pelayanan
-                  kesehatan dasar yang berkualitas, merata, dan terjangkau untuk seluruh
-                  lapisan masyarakat.
+                  Terwujudnya Kabupaten Malang yang Maju , Sejahtera, Berdaya Saing dan Berkelanjutan dengan Semangat Gotong Royong berdasarkan Pancasila dalam Negara Kesatuan Republik Indonesia yang Bhineka Tunggal Ika.
                 </p>
               </div>
 
@@ -144,36 +137,15 @@ const Tentang = () => {
                   </div>
                   <h3 className="text-xl font-bold text-foreground">Misi</h3>
                 </div>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    Memberikan pelayanan kesehatan yang profesional dan berkualitas
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    Meningkatkan kesadaran masyarakat tentang pentingnya kesehatan
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    Menjalin kemitraan dengan berbagai pihak untuk peningkatan kesehatan
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    Melaksanakan program kesehatan promotif dan preventif
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    Memberikan edukasi kesehatan kepada masyarakat secara berkelanjutan
-                  </li>
-                </ul>
+                <p className="text-muted-foreground leading-relaxed">
+                  Mewujudkan kesejahteran rakyat membangun sumber daya manusia unggul.
+                </p>
               </div>
 
               <div className="bg-card rounded-2xl p-6 md:p-8 shadow-card border border-border/50">
-                <h3 className="text-xl font-bold text-foreground mb-4">Sejarah Singkat</h3>
+                <h3 className="text-xl font-bold text-foreground mb-4">Tujuan</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Ponkesdes didirikan sebagai upaya pemerintah untuk mendekatkan layanan kesehatan
-                  kepada masyarakat desa. Dengan fokus pada pelayanan kesehatan dasar, kami telah
-                  melayani ribuan pasien dari berbagai kalangan dan usia selama lebih dari satu dekade.
+                 Menyelenggarakan pelayanan kesehatan yang berkualitas serta meningkatkan kesadaran, kemauan dan kemampuan hidup sehat bagi setiap orang yang bertempat tinggal di desa/kelurahan, agar terwujud derajat kesehatan masyarakat di desa/kelurahan yang setinggi-tingginya.
                 </p>
               </div>
             </div>

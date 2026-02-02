@@ -40,7 +40,7 @@ const Footer = () => {
               <li><Link to="/" className="hover:text-brand-yellow transition-colors">Beranda</Link></li>
               <li><Link to="/layanan" className="hover:text-brand-yellow transition-colors">Layanan</Link></li>
               <li><Link to="/tentang" className="hover:text-brand-yellow transition-colors">Tentang Kami</Link></li>
-              <li><Link to="/syarat-berkas" className="hover:text-brand-yellow transition-colors">Syarat Berkas</Link></li>
+              <li><Link to="/gallery" className="hover:text-brand-yellow transition-colors">Galeri</Link></li>
               <li><Link to="/kontak" className="hover:text-brand-yellow transition-colors">Kontak</Link></li>
             </ul>
           </div>
@@ -65,15 +65,26 @@ const Footer = () => {
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span>Ds.Wiloso, Jl. Wiloso Gondowangi, RT.20/RW.04, Poh Bener, Gondowangi, Kec. Wagir, Kabupaten Malang, Jawa Timur 65158</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <a href={`https://wa.me/${branding.whatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-yellow transition-colors">
-                  +{branding.whatsapp}
-                </a>
-              </li>
+              {Array.isArray(branding.whatsapp) ? (
+                branding.whatsapp.map((item: any, index: number) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <Phone className="w-4 h-4" />
+                    <a href={`https://wa.me/${item.number}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-yellow transition-colors">
+                      +{item.number} ({item.label})
+                    </a>
+                  </li>
+                ))
+              ) : (
+                <li className="flex items-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  <a href={`https://wa.me/${branding.whatsapp}`} target="_blank" rel="noopener noreferrer" className="hover:text-brand-yellow transition-colors">
+                    +{branding.whatsapp}
+                  </a>
+                </li>
+              )}
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>ponkesdes.sejahtera@gmail.com</span>
+                <span>ponkesdes.wiloso@gmail.com</span>
               </li>
             </ul>
           </div>

@@ -5,7 +5,9 @@ import {
   Heart,
   Pill,
   Clipboard,
-  ArrowRight
+  ArrowRight,
+  FileText,
+  Activity
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import headerBg from "@/assets/header-bg.png";
@@ -14,71 +16,77 @@ import { branding } from "@/config/branding";
 const Layanan = () => {
   const services = [
     {
-      icon: Stethoscope,
-      title: "Pemeriksaan Umum",
-      description: "Layanan pemeriksaan kesehatan umum untuk semua usia dengan tenaga medis profesional.",
+      icon: Baby,
+      title: "Pelayanan Kesehatan Klaster 2",
+      description: "Pelayanan kesehatan yang ditujukan untuk ibu hamil, ibu nifas, bayi, balita dan remaja.",
       details: [
-        "Pemeriksaan tekanan darah",
-        "Pengukuran suhu tubuh",
-        "Pemeriksaan fisik",
-        "Konsultasi keluhan kesehatan"
+        "Pemeriksaan kehamilan",
+        "Pemeriksaan ibu nifas",
+        "Pemeriksaan bayi",
+        "Pemeriksaan balita",
+        "Pemeriksaan remaja",
+        "Pemberian vitamin",
+        "Konseling kesehatan ibu dan anak"
       ]
     },
     {
-      icon: Baby,
-      title: "Kesehatan Ibu & Anak",
-      description: "Pelayanan kesehatan ibu hamil, bayi, dan balita termasuk imunisasi dasar lengkap.",
+      icon: Stethoscope,
+      title: "Pelayanan Kesehatan Klaster 3",
+      description: "Layanan kesehatan untuk masyarakat usia dewasa hingga lanjut usia.",
       details: [
-        "Pemeriksaan kehamilan (ANC)",
-        "Penimbangan balita",
-        "Pemberian vitamin",
-        "Konseling ASI eksklusif"
+        "Pemeriksaan kesehatan umu dewasa",
+        "Pemeriksaan tekanan darah",
+        "Konsultasi keluhan kesehatan",
+        "Pemeriksaan lansia",
+        "Edukasi kesehatan"
       ]
     },
     {
       icon: Syringe,
-      title: "Imunisasi",
-      description: "Program imunisasi dasar dan lanjutan untuk anak-anak sesuai jadwal nasional.",
+      title: "Pelayanan Luar Gedung Ponkesdes",
+      description: "Pelayanan kesehatan yang dilakukan di luar fasilitas Ponkesdes.",
       details: [
-        "BCG, DPT, Polio",
-        "Hepatitis B",
-        "Campak, MR",
-        "Imunisasi lanjutan"
+        "ILP (Integrasi Layanan Primer) / Posyandu",
+        "Pemeriksaan & skrining anak sekolah dasar",
+        "Pembagian tablet Fe untuk anak sekolah",
+        "Pembagian obat cacing untuk balita & pra sekolah",
+        "Kunjungan rumah",
+        "Penyelidikan Epidemiologi (PE) untuk kasus penyakit menular"
       ]
     },
-    {
-      icon: Heart,
-      title: "Program Posbindu",
-      description: "Deteksi dini penyakit tidak menular seperti hipertensi dan diabetes mellitus.",
-      details: [
-        "Pemeriksaan gula darah",
-        "Pemeriksaan kolesterol",
-        "Pengukuran lingkar perut",
-        "Edukasi gaya hidup sehat"
-      ]
-    },
-    {
-      icon: Pill,
-      title: "Pemberian Obat",
-      description: "Penyediaan obat-obatan esensial untuk pengobatan penyakit ringan.",
-      details: [
-        "Obat-obatan generik",
-        "Vitamin dan suplemen",
-        "Obat P3K",
-        "Obat program pemerintah"
-      ]
-    },
-    {
-      icon: Clipboard,
-      title: "Konsultasi Kesehatan",
-      description: "Layanan konsultasi dan edukasi kesehatan untuk masyarakat desa.",
-      details: [
-        "Konsultasi gizi",
-        "Edukasi kesehatan",
-        "Penyuluhan kesehatan",
-        "Rujukan ke fasilitas lanjutan"
-      ]
-    },
+    // {
+    //   icon: Heart,
+    //   title: "Program Posbindu",
+    //   description: "Deteksi dini penyakit tidak menular seperti hipertensi dan diabetes mellitus.",
+    //   details: [
+    //     "Pemeriksaan gula darah",
+    //     "Pemeriksaan kolesterol",
+    //     "Pengukuran lingkar perut",
+    //     "Edukasi gaya hidup sehat"
+    //   ]
+    // },
+    // {
+    //   icon: Pill,
+    //   title: "Pemberian Obat",
+    //   description: "Penyediaan obat-obatan esensial untuk pengobatan penyakit ringan.",
+    //   details: [
+    //     "Obat-obatan generik",
+    //     "Vitamin dan suplemen",
+    //     "Obat P3K",
+    //     "Obat program pemerintah"
+    //   ]
+    // },
+    // {
+    //   icon: Clipboard,
+    //   title: "Konsultasi Kesehatan",
+    //   description: "Layanan konsultasi dan edukasi kesehatan untuk masyarakat desa.",
+    //   details: [
+    //     "Konsultasi gizi",
+    //     "Edukasi kesehatan",
+    //     "Penyuluhan kesehatan",
+    //     "Rujukan ke fasilitas lanjutan"
+    //   ]
+    // },
   ];
 
   return (
@@ -92,7 +100,7 @@ const Layanan = () => {
           backgroundPosition: 'center'
         }}
       >
-        <div className="absolute inset-0 bg-background/40" />
+        <div className="absolute inset-0 bg-background/70" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto animate-fade-in">
             <span className="inline-block px-4 py-2 bg-secondary rounded-full text-secondary-foreground text-sm font-medium mb-4">
@@ -139,21 +147,89 @@ const Layanan = () => {
                     </li>
                   ))}
                 </ul>
-
-                <a
-                  href={`https://wa.me/${branding.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 hover:text-brand-yellow transition-all duration-200"
-                >
-                  Hubungi Kami
-                  <ArrowRight className="w-4 h-4" />
-                </a>
               </div>
             ))}
           </div>
         </div>
       </div>
+      {/* Requirements Section */}
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Persyaratan <span className="text-gradient">Administrasi</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Berikut adalah dokumen yang perlu Anda siapkan sebelum mendapatkan pelayanan kesehatan.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Pelayanan Kesehatan Klaster 2",
+                icon: Baby,
+                items: [
+                  "Membawa Kartu Tanda Penduduk (KTP) asli / fotokopi",
+                  "Membawa Kartu Keluarga (KK) jika belum memiliki KTP",
+                  "Membawa Buku KIA (Kesehatan Ibu dan Anak)"
+                ]
+              },
+              {
+                title: "Pelayanan Kesehatan Klaster 3",
+                icon: Activity,
+                items: [
+                  "Membawa Kartu Tanda Penduduk (KTP) asli / fotokopi",
+                  "Membawa Kartu Keluarga (KK) jika belum memiliki KTP"
+                ]
+              },
+              {
+                title: "Pelayanan Luar Gedung Ponkesdes",
+                icon: Clipboard,
+                items: [
+                  "Membawa Kartu Tanda Penduduk (KTP) asli / fotokopi",
+                  "Membawa Kartu Keluarga (KK) jika belum memiliki KTP"
+                ]
+              }
+            ].map((req, index) => (
+              <div
+                key={index}
+                className="group bg-card rounded-2xl overflow-hidden shadow-card hover:shadow-hover transition-all duration-300 hover:-translate-y-1 border border-border/50"
+              >
+                <div className="p-8">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-primary flex items-center justify-center mb-6 text-primary-foreground shadow-soft">
+                    <req.icon className="w-7 h-7" />
+                  </div>
+
+                  <h3 className="text-xl font-bold text-foreground mb-4">{req.title}</h3>
+
+                  <ul className="space-y-3">
+                    {req.items.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-muted-foreground">
+                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 bg-card rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto border border-border/50">
+            <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
+              <FileText className="w-8 h-8 text-accent" />
+            </div>
+            <h2 className="text-2xl font-bold text-foreground mb-4">
+              Penting Untuk Diperhatikan
+            </h2>
+            <p className="text-muted-foreground">
+              Pastikan seluruh dokumen yang dibawa masih berlaku. Untuk pasien gawat darurat,
+              penanganan medis akan didahulukan sebelum pengurusan administrasi.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

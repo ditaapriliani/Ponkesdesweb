@@ -1,29 +1,8 @@
 import { useState } from "react";
-import { ArrowRight, MapPin, FileText, Volume2, VolumeX } from "lucide-react";
+import { ArrowRight, MapPin, FileText, Volume2, VolumeX, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-ponkesdes.jpg";
-import gallery1 from "@/assets/gallery-1.png";
-import gallery2 from "@/assets/gallery-2.png";
-import gallery3 from "@/assets/gallery-3.png";
-
-const galleryItems = [
-  {
-    image: gallery1,
-    title: "Pemeriksaan Kesehatan",
-    description: "Layanan pemeriksaan umum rutin untuk warga desa."
-  },
-  {
-    image: gallery2,
-    title: "Penyuluhan Posyandu",
-    description: "Kegiatan edukasi kesehatan untuk ibu dan anak."
-  },
-  {
-    image: gallery3,
-    title: "Kegiatan Masyarakat",
-    description: "Program jalan sehat dan olahraga bersama warga."
-  }
-];
 
 const Beranda = () => {
   const [isMuted, setIsMuted] = useState(true);
@@ -113,7 +92,7 @@ const Beranda = () => {
                     className="w-12 h-12 rounded-xl object-cover"
                   />
                   <div>
-                    <p className="font-semibold text-foreground">Buka Sekarang</p>
+                    <p className="font-semibold text-foreground">Jam Operasional</p>
                     <p className="text-sm text-muted-foreground">08:00 - 16:00 WIB</p>
                   </div>
                 </div>
@@ -135,15 +114,24 @@ const Beranda = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Alamat Kantor</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Jl. Kesehatan No. 01, Desa Sejahtera, Kecamatan Makmur, <br className="hidden sm:block" />
-                    Kabupaten Sentosa
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Ds.Wiloso, Jl. Wiloso Gondowangi, RT.20/RW.04, Gondowangi, Kec. Wagir, Kabupaten Malang.
                   </p>
+                  <Button variant="outline" size="sm" className="h-9 gap-2" asChild>
+                    <a
+                      href="https://maps.app.goo.gl/eQ6ZrG4xG7hUsVju5"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Buka di Google Maps
+                    </a>
+                  </Button>
                 </div>
               </div>
               <div className="flex-grow min-h-[300px]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.92682669924784!2d112.58034965643901!3d-8.016539527906241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e789d25a20780b9%3A0x775a4a74cb8989e!2sTaman%20Kanak%20Kanak%20Dharma%20Wanita%20-%2002!5e0!3m2!1sid!2sid!4v1769871884902!5m2!1sid!2sid"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.92682669924784!2d112.58034965643901!3d-8.016539527906241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e789d25a20780b9%3A0x775a4a74cb8989e!2sTaman%20Kanak%20Kanak%20Dharma%20Wanita%20-%2002!5e0!3m2!1id!2sid!4v1769871884902!5m2!1sid!2sid"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -165,7 +153,7 @@ const Beranda = () => {
                 <ul className="space-y-4 text-muted-foreground">
                   <li className="flex items-start gap-3">
                     <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    <p className="leading-relaxed">Bawa kartu identitas (KTP/KK) & Kartu BPJS asli atau fotokopi saat berkunjung.</p>
+                    <p className="leading-relaxed">Bawa kartu identitas (KTP/KK) saat berkunjung.</p>
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
@@ -177,45 +165,11 @@ const Beranda = () => {
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    <p className="leading-relaxed">Jadwal pelayanan sewaktu-waktu dapat berubah pada hari libur nasional.</p>
+                    <p className="leading-relaxed">Jadwal pelayanan sewaktu-waktu dapat berubah.</p>
                   </li>
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Galeri Kegiatan</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Dokumentasi berbagai kegiatan pelayanan dan pengabdian kesehatan masyarakat di Ponkesdes.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {galleryItems.map((item, index) => (
-              <div
-                key={index}
-                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                  <h3 className="text-white font-bold text-xl mb-1">{item.title}</h3>
-                  <p className="text-white/80 text-sm">{item.description}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
