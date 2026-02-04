@@ -11,4 +11,9 @@ export const branding = {
         icon: "+",
         imagePath: "/logo.jpg",
     },
+    footerLogo: {
+        type: "image" as "icon" | "image",
+        icon: "+",
+        imagePath: "/footer-logo.png",
+    },
 };

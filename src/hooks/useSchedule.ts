@@ -20,8 +20,16 @@ const DEFAULT_SCHEDULE: ScheduleItem[] = [
 
 export const useSchedule = () => {
     const [schedule, setSchedule] = useState<ScheduleItem[]>(() => {
-        const saved = localStorage.getItem('ponkesdes_schedule');
-        return saved ? JSON.parse(saved) : DEFAULT_SCHEDULE;
+        try {
+            if (typeof window === 'undefined') return DEFAULT_SCHEDULE;
+            const saved = localStorage.getItem('ponkesdes_schedule');
+            if (!saved) return DEFAULT_SCHEDULE;
+            const parsed = JSON.parse(saved);
+            return Array.isArray(parsed) ? parsed : DEFAULT_SCHEDULE;
+        } catch (e) {
+            console.warn('Failed to parse saved schedule, using default.', e);
+            return DEFAULT_SCHEDULE;
+        }
     });
 
     useEffect(() => {
@@ -51,7 +59,13 @@ export const useSchedule = () => {
 
     const updateSchedule = (newSchedule: ScheduleItem[]) => {
         setSchedule(newSchedule);
-        localStorage.setItem('ponkesdes_schedule', JSON.stringify(newSchedule));
+        try {
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('ponkesdes_schedule', JSON.stringify(newSchedule));
+            }
+        } catch (e) {
+            console.warn('Failed to save schedule to localStorage', e);
+        }
     };
 
     return { schedule, updateSchedule };

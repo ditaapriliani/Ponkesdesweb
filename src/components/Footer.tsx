@@ -1,6 +1,6 @@
 import { Heart, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { branding } from "@/config/brandingfooter";
+import { branding } from "@/config/branding";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
