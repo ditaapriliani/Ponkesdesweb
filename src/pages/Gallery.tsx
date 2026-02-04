@@ -1,34 +1,43 @@
+import { useState, useEffect } from "react";
 import headerBg from "@/assets/header-bg.png";
-import gallery1 from "@/assets/gallery-1.png";
-import gallery2 from "@/assets/gallery-2.png";
-import gallery3 from "@/assets/gallery-3.png";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { supabase } from "@/lib/supabaseClient";
 
-const galleryItems = [
-  {
-    images: [gallery1, gallery2, gallery3],
-    title: "Pemeriksaan Kesehatan",
-    description: "Layanan pemeriksaan umum rutin untuk warga desa."
-  },
-  {
-    images: [gallery2, gallery3, gallery1],
-    title: "Penyuluhan Posyandu",
-    description: "Kegiatan edukasi kesehatan untuk ibu dan anak."
-  },
-  {
-    images: [gallery3, gallery1, gallery2],
-    title: "Kegiatan Masyarakat",
-    description: "Program jalan sehat dan olahraga bersama warga."
-  }
-];
+interface GalleryItem {
+  id: number;
+  title: string;
+  image_url: string;
+  created_at: string;
+}
 
 const Gallery = () => {
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadGallery();
+  }, []);
+
+  const loadGallery = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('gallery')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error loading gallery:', error);
+        setLoading(false);
+        return;
+      }
+
+      setGalleryItems(data || []);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="pt-20 min-h-screen bg-background">
       {/* Header */}
@@ -59,44 +68,46 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {galleryItems.map((item, index) => (
-              <div
-                key={index}
-                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in flex flex-col bg-card border border-border/50"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="relative">
-                  <Carousel className="w-full">
-                    <CarouselContent>
-                      {item.images.map((img, imgIndex) => (
-                        <CarouselItem key={imgIndex}>
-                          <div className="aspect-[4/3] overflow-hidden">
-                            <img
-                              src={img}
-                              alt={`${item.title} - ${imgIndex + 1}`}
-                              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                            />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                      <CarouselPrevious className="relative left-0 translate-y-0 pointer-events-auto bg-background/80 backdrop-blur-sm border-white/20 hover:bg-background shadow-lg h-10 w-10" />
-                      <CarouselNext className="relative right-0 translate-y-0 pointer-events-auto bg-background/80 backdrop-blur-sm border-white/20 hover:bg-background shadow-lg h-10 w-10" />
+          {loading ? (
+            <div className="text-center py-20">
+              <p className="text-muted-foreground">Memuat galeri...</p>
+            </div>
+          ) : galleryItems.length === 0 ? (
+            <div className="text-center py-20">
+              <p className="text-muted-foreground">Belum ada gambar di galeri</p>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {galleryItems.map((item, index) => (
+                <div
+                  key={item.id}
+                  className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in flex flex-col bg-card border border-border/50"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="relative">
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img
+                        src={item.image_url}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
                     </div>
-                  </Carousel>
-                </div>
+                  </div>
 
-                <div className="p-6">
-                  <h3 className="text-foreground font-bold text-xl mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {item.description}
-                  </p>
+                  <div className="p-6">
+                    <h3 className="text-foreground font-bold text-xl mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {new Date(item.created_at).toLocaleDateString('id-ID', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>

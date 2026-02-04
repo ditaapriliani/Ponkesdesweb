@@ -121,6 +121,9 @@ const Header = () => {
 
           <div className="hidden md:flex items-center gap-4">
             <ContactButtons />
+            <Button variant="outline" size="default" asChild>
+              <Link to="/login">Login Admin</Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -149,6 +152,11 @@ const Header = () => {
                   {link.label}
                 </Link>
               ))}
+              <Link to="/login" onClick={() => setIsMenuOpen(false)} className="px-4 py-3">
+                <Button variant="outline" size="sm" className="w-full">
+                  Login Admin
+                </Button>
+              </Link>
               <div className="px-4 pt-2">
                 <div className="mb-2">
                   <ContactButtons />
