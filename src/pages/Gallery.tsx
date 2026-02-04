@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import headerBg from "@/assets/header-bg.png";
 import { supabase } from "@/lib/supabaseClient";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Download, X } from "lucide-react";
 
 interface GalleryItem {
   id: number;
@@ -12,6 +15,8 @@ interface GalleryItem {
 const Gallery = () => {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     loadGallery();
@@ -35,6 +40,28 @@ const Gallery = () => {
       console.error('Error:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDownload = async () => {
+    if (!selectedImage) return;
+    
+    try {
+      setDownloading(true);
+      const response = await fetch(selectedImage.image_url);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${selectedImage.title}.jpg`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Error downloading image:', error);
+    } finally {
+      setDownloading(false);
     }
   };
 
@@ -81,8 +108,9 @@ const Gallery = () => {
               {galleryItems.map((item, index) => (
                 <div
                   key={item.id}
-                  className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in flex flex-col bg-card border border-border/50"
+                  className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in flex flex-col bg-card border border-border/50 cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
+                  onClick={() => setSelectedImage(item)}
                 >
                   <div className="relative">
                     <div className="aspect-[4/3] overflow-hidden">
@@ -110,6 +138,50 @@ const Gallery = () => {
           )}
         </div>
       </section>
+
+      {/* Image Modal */}
+      <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] p-0 border-0">
+          <div className="relative w-full h-full bg-black/90 rounded-lg overflow-hidden">
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 z-50 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Image */}
+            <div className="flex items-center justify-center min-h-[60vh] p-4">
+              <img
+                src={selectedImage?.image_url}
+                alt={selectedImage?.title}
+                className="max-w-full max-h-[70vh] object-contain"
+              />
+            </div>
+
+            {/* Footer with Info and Download Button */}
+            <div className="bg-gradient-to-t from-black/80 to-transparent p-6 absolute bottom-0 left-0 right-0">
+              <h3 className="text-white font-bold text-xl mb-2">{selectedImage?.title}</h3>
+              <p className="text-white/70 text-sm mb-4">
+                {selectedImage && new Date(selectedImage.created_at).toLocaleDateString('id-ID', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </p>
+              <Button
+                onClick={handleDownload}
+                disabled={downloading}
+                className="bg-[#871C1C] hover:bg-[#6b1818] text-white w-full"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                {downloading ? 'Mengunduh...' : 'Unduh Gambar'}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
