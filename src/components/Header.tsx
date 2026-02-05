@@ -63,7 +63,7 @@ const Header = () => {
     { href: "/layanan", label: "Layanan" },
     { href: "/tentang", label: "Tentang Kami" },
     { href: "/gallery", label: "Galeri" },
-    { href: "/kontak", label: "Kontak" },
+    { href: "/jadwal", label: "Jadwal" },
   ];
 
   const isActive = (href: string) => {

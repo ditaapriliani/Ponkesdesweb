@@ -9,7 +9,7 @@ import Index from "./pages/Index";
 import Layanan from "./pages/Layanan";
 import Tentang from "./pages/Tentang";
 import Gallery from "./pages/Gallery";
-import Kontak from "./pages/Kontak";
+import Jadwal from "./pages/Jadwal";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/layanan" element={<Layout><Layanan /></Layout>} />
           <Route path="/tentang" element={<Layout><Tentang /></Layout>} />
           <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
-          <Route path="/kontak" element={<Layout><Kontak /></Layout>} />
+          <Route path="/jadwal" element={<Layout><Jadwal /></Layout>} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<AdminDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

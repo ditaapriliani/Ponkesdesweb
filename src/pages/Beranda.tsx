@@ -43,7 +43,7 @@ const Beranda = () => {
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <Link to="/kontak">Jadwal Pelayanan</Link>
+                  <Link to="/jadwal">Jadwal Pelayanan</Link>
                 </Button>
               </div>
 
@@ -105,9 +105,9 @@ const Beranda = () => {
       {/* Info Section */}
       <section className="py-12 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
+          <div className="flex justify-center">
             {/* Address & Map Card */}
-            <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50 flex flex-col animate-fade-in">
+            <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border/50 flex flex-col animate-fade-in w-full">
               <div className="p-6 md:p-8 flex gap-4">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-6 h-6 text-primary" />
@@ -129,7 +129,7 @@ const Beranda = () => {
                   </Button>
                 </div>
               </div>
-              <div className="flex-grow min-h-[300px]">
+              <div className="flex-grow min-h-[400px]">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.92682669924784!2d112.58034965643901!3d-8.016539527906241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e789d25a20780b9%3A0x775a4a74cb8989e!2sTaman%20Kanak%20Kanak%20Dharma%20Wanita%20-%2002!5e0!3m2!1id!2sid!4v1769871884902!5m2!1sid!2sid"
                   width="100%"
@@ -140,30 +140,6 @@ const Beranda = () => {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Lokasi Ponkesdes"
                 />
-              </div>
-            </div>
-
-            {/* Important Notes */}
-            <div className="bg-card rounded-2xl p-6 md:p-8 shadow-sm border border-border/50 flex gap-4 animate-fade-in" style={{ animationDelay: '100ms' }}>
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                <FileText className="w-6 h-6 text-accent" />
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-foreground mb-4">Catatan Penting</h3>
-                <ul className="space-y-4 text-muted-foreground">
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    <p className="leading-relaxed">Membawa kartu identitas (KTP/KK) saat berkunjung.</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    <p className="leading-relaxed">Pendaftaran pasien umum ditutup sesuai jam operasional.</p>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                    <p className="leading-relaxed">Jadwal pelayanan sewaktu-waktu dapat berubah.</p>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>

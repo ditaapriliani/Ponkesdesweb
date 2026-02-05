@@ -1,31 +1,7 @@
-import { MapPin, Phone, Clock, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Clock } from "lucide-react";
 import headerBg from "@/assets/header-bg.png";
-import { branding } from "@/config/branding";
 
 const Kontak = () => {
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: "Perawat Desa (Ibu Frida)",
-      content: `+${branding.whatsapp[0].number}`,
-    },
-    {
-      icon: Phone,
-      title: "Bidan Desa (Ibu Wayan)",
-      content: `+${branding.whatsapp[1].number}`,
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      content: "ponkesdes.wiloso@gmail.com",
-    },
-    {
-      icon: Clock,
-      title: "Jam Operasional",
-      content: "Senin - Sabtu: 07.30 - 12.00 WIB",
-    },
-  ];
 
   const schedule = [
     { day: "Senin", time: "07.30 - 12.00 WIB", service: "Pelayanan Klaster 2 dan 3" },
@@ -67,28 +43,7 @@ const Kontak = () => {
       {/* Content */}
       <div className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div className="space-y-6 animate-slide-in-left">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Informasi Kontak</h2>
-
-              {contactInfo.map((info, index) => (
-                <div
-                  key={index}
-                  className="flex items-start gap-4 p-4 bg-card rounded-xl shadow-soft border border-border/50"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{info.title}</h3>
-                    <p className="text-muted-foreground">{info.content}</p>
-                  </div>
-                </div>
-              ))}
-
-            </div>
-
+          <div className="grid gap-12">
             {/* Schedule Table */}
             <div className="animate-slide-in-right">
               <div className="bg-card rounded-2xl p-6 md:p-8 shadow-card border border-border/50">

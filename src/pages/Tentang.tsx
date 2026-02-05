@@ -1,8 +1,8 @@
-import { CheckCircle, Target, Eye, Award, Users, Heart } from "lucide-react";
+import { CheckCircle, Target, Eye, Phone, Mail, Clock } from "lucide-react";
 import nurseImage from "@/assets/nurse-1.jpg";
-import doctorImage from "@/assets/doctor-1.jpg";
 import bidanImage from "@/assets/bidan-1.jpg";
 import headerBg from "@/assets/header-bg.png";
+import { branding } from "@/config/branding";
 
 const Tentang = () => {
   const features = [
@@ -27,6 +27,28 @@ const Tentang = () => {
     },
   ];
 
+  const contactInfo = [
+    {
+      icon: Phone,
+      title: "Perawat Desa (Ibu Frida)",
+      content: `+${branding.whatsapp[0].number}`,
+    },
+    {
+      icon: Phone,
+      title: "Bidan Desa (Ibu Wayan)",
+      content: `+${branding.whatsapp[1].number}`,
+    },
+    {
+      icon: Mail,
+      title: "Email",
+      content: "ponkesdes.wiloso@gmail.com",
+    },
+    {
+      icon: Clock,
+      title: "Jam Operasional",
+      content: "Senin - Sabtu: 07.30 - 12.00 WIB",
+    },
+  ];
 
   return (
     <div className="pt-20 min-h-screen bg-background">
@@ -60,12 +82,10 @@ const Tentang = () => {
       <div className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* About Content */}
+            {/* Left: About + Features + Team */}
             <div className="space-y-8 animate-slide-in-left">
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                  Apa Itu Ponkesdes?
-                </h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Apa Itu Ponkesdes?</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
                   Ponkesdes (Pondok Kesehatan Desa) adalah fasilitas kesehatan tingkat pertama yang
                   didirikan untuk memberikan pelayanan kesehatan dasar kepada masyarakat desa.
@@ -89,7 +109,7 @@ const Tentang = () => {
                 </ul>
               </div>
 
-              {/* Team Section */}
+              {/* Team Section (below Keunggulan) */}
               <div className="pt-12 border-t border-border">
                 <h3 className="text-xl font-bold text-foreground mb-6">Tim Kesehatan Kami</h3>
                 <div className="grid gap-6 sm:grid-cols-2">
@@ -115,7 +135,7 @@ const Tentang = () => {
               </div>
             </div>
 
-            {/* Vision & Mission Cards */}
+            {/* Right: Visi / Misi / Tujuan then Contact */}
             <div className="space-y-6 animate-slide-in-right">
               <div className="bg-card rounded-2xl p-6 md:p-8 shadow-card border border-border/50">
                 <div className="flex items-center gap-4 mb-4">
@@ -147,6 +167,53 @@ const Tentang = () => {
                   Menyelenggarakan pelayanan kesehatan yang berkualitas serta meningkatkan kesadaran, kemauan dan kemampuan hidup sehat bagi setiap orang yang bertempat tinggal di desa/kelurahan, agar terwujud derajat kesehatan masyarakat di desa/kelurahan yang setinggi-tingginya.
                 </p>
               </div>
+
+              <div className="pt-4">
+                <h2 className="text-2xl font-bold text-foreground mb-4">Informasi Kontak</h2>
+                {contactInfo.map((info, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start gap-4 p-4 bg-card rounded-xl shadow-soft border border-border/50 mb-3"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center flex-shrink-0">
+                      <info.icon className="w-6 h-6 text-primary-foreground" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">{info.title}</h3>
+                      <p className="text-muted-foreground">{info.content}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Alur Pelayanan Section */}
+      <div className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Alur <span className="text-gradient">Pelayanan</span> & Struktur <span className="text-gradient">Organisasi</span></h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Berikut adalah alur pelayanan pasien dan struktur organisasi Ponkesdes</p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Alur Pelayanan */}
+            <div className="bg-card rounded-2xl p-8 shadow-card border border-border/50 animate-slide-in-left flex items-center justify-center">
+              <img
+                src="/alur-pelayanan.png"
+                alt="Alur Pelayanan Ponkesdes"
+                className="w-full h-auto"
+              />
+            </div>
+            
+            {/* Struktur Organisasi */}
+            <div className="bg-card rounded-2xl p-8 shadow-card border border-border/50 animate-slide-in-right flex items-center justify-center">
+              <img
+                src="/struktur-organisasi.png"
+                alt="Struktur Organisasi Ponkesdes"
+                className="w-full h-auto"
+              />
             </div>
           </div>
         </div>

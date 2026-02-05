@@ -213,17 +213,50 @@ const Layanan = () => {
             ))}
           </div>
 
-          <div className="mt-16 bg-card rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto border border-border/50">
-            <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-              <FileText className="w-8 h-8 text-accent" />
-            </div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Penting Untuk Diperhatikan
+          <div className="mt-16 bg-card rounded-2xl p-8 md:p-12 border border-border/50">
+            <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
+              Hak dan Kewajiban <span className="text-gradient">Pasien</span>
             </h2>
-            <p className="text-muted-foreground">
-              Pastikan seluruh dokumen yang dibawa masih berlaku. Untuk pasien gawat darurat,
-              penanganan medis akan didahulukan sebelum pengurusan administrasi.
-            </p>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {/* Hak Pasien */}
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-4 text-primary">Hak Pasien</h3>
+                <ul className="space-y-3">
+                  {[
+                    "Memperoleh informasi mengenai tata tertib dan peraturan yang berlaku",
+                    "Memperoleh layanan yang bermutu, aman, nyaman, adil, jujur dan manusiawi",
+                    "Mengajukan pengaduan atas kualitas pelayanan yang didapatkan",
+                    "Mendapat informasi hasil pemeriksaan yang meliputi diagnosis dan tata cara tindakan, tujuan tindakan, alternatif tindakan, resiko, biaya dan komplikasi yang dan prognosis terhadap tindakan yang dilakukan",
+                    "Memberikan persetujuan atau menolak atas tindakan yang akan dilakukan oleh tenaga kesehatan terhadap penyakit yang dideritanya",
+                    "Keluarga dapat mendampingi saat menerima pelayanan kesehatan"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-muted-foreground">
+                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Kewajiban Pasien */}
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-4 text-primary">Kewajiban Pasien</h3>
+                <ul className="space-y-3">
+                  {[
+                    "Memeriksakan diri sedini mungkin",
+                    "Memberikan informasi yang benar dan lengkap tentang masalah kesehatannya kepada tenaga kesehatan di ponkesdes",
+                    "Mematuhi nasehat dan petunjuk tenaga kesehatan di ponkesdes",
+                    "Membayar biaya sesuai peraturan yang berlaku"
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-muted-foreground">
+                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
