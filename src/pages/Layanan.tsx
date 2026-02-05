@@ -32,7 +32,7 @@ const Layanan = () => {
       title: "Pelayanan Kesehatan Klaster 3",
       description: "Layanan kesehatan untuk masyarakat usia dewasa hingga lanjut usia.",
       details: [
-        "Pemeriksaan kesehatan umu dewasa",
+        "Pemeriksaan kesehatan umum dewasa",
         "Konsultasi keluhan kesehatan",
         "Pemeriksaan lansia",
         "Edukasi kesehatan"
