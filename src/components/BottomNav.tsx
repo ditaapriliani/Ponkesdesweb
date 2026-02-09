@@ -8,9 +8,9 @@ const BottomNav = () => {
   const navItems = [
     { href: "/", label: "Beranda", icon: Home },
     { href: "/layanan", label: "Layanan", icon: Stethoscope },
-    { href: "/tentang", label: "Tentang", icon: Info },
-    { href: "/gallery", label: "Galeri", icon: Image },
     { href: "/jadwal", label: "Jadwal", icon: Calendar },
+    { href: "/gallery", label: "Galeri", icon: Image },
+    { href: "/tentang", label: "Tentang", icon: Info },
   ];
 
   const isActive = (href: string) => {
