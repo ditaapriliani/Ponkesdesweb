@@ -116,7 +116,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="pt-20 min-h-screen bg-background">
+    <div className="pt-20 min-h-screen bg-background w-full">
       {/* Header */}
       <div
         className="relative py-16 md:py-24 overflow-hidden"
@@ -144,7 +144,7 @@ const Gallery = () => {
 
       {/* Gallery Grid */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="text-center py-20">
               <p className="text-muted-foreground">Memuat galeri...</p>
@@ -158,46 +158,98 @@ const Gallery = () => {
               {galleryFolders.map((folder, index) => (
                 <div
                   key={folder.id}
-                  className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 animate-fade-in flex flex-col bg-card border border-border/50 cursor-pointer"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-3xl transition-all duration-700 animate-fade-in flex flex-col bg-gradient-to-br from-card via-card/95 to-card/80 border border-border/20 cursor-pointer hover:-translate-y-1 hover:scale-[1.01] hover:rotate-0.5"
+                  style={{ animationDelay: `${index * 150}ms` }}
                   onClick={() => {
                     setSelectedFolder(folder);
                     setSelectedImageIndex(0);
                   }}
                 >
-                  <div className="relative">
-                    <div className="aspect-[4/3] overflow-hidden">
-                      {folder.images.length > 0 ? (
-                        <img
-                          src={folder.images[0].image_url}
-                          alt={folder.name}
-                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-muted flex items-center justify-center">
-                          <p className="text-muted-foreground">Tidak ada gambar</p>
-                        </div>
-                      )}
-                    </div>
-                    {folder.images.length > 1 && (
-                      <div className="absolute top-4 right-4 bg-black/50 text-white px-2 py-1 rounded-full text-sm">
-                        +{folder.images.length - 1}
-                      </div>
-                    )}
+                  {/* Animated background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
+
+                  {/* Floating particles effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10">
+                    <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/30 rounded-full animate-ping" style={{ animationDelay: '0s' }} />
+                    <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-accent/40 rounded-full animate-ping" style={{ animationDelay: '0.5s' }} />
+                    <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-secondary/30 rounded-full animate-ping" style={{ animationDelay: '1s' }} />
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-foreground font-bold text-xl mb-2">{folder.name}</h3>
+                  <div className="relative">
+                    <div className="aspect-[4/3] overflow-hidden relative">
+                      {folder.images.length > 0 ? (
+                        <>
+                          <img
+                            src={folder.images[0].image_url}
+                            alt={folder.name}
+                            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-125 group-hover:brightness-110 group-hover:saturate-110"
+                          />
+                          {/* Multi-layer overlay effects */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                        </>
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-muted via-muted/80 to-muted/60 flex items-center justify-center relative">
+                          <div className="text-center relative z-10">
+                            <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center shadow-lg">
+                              <svg className="w-10 h-10 text-primary/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                            <p className="text-muted-foreground font-semibold text-sm">Tidak ada gambar</p>
+                          </div>
+                          {/* Animated background pattern */}
+                          <div className="absolute inset-0 opacity-10">
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 animate-pulse" />
+                          </div>
+                        </div>
+                      )}
+
+
+                    </div>
+                  </div>
+
+                  <div className="p-7 relative z-20">
+                    {/* Enhanced header with better spacing */}
+                    <div className="flex items-start justify-between mb-4">
+                      <h3 className="text-foreground font-bold text-xl leading-tight group-hover:text-primary transition-colors duration-500 flex-1 mr-3">
+                        {folder.name}
+                      </h3>
+                      <div className="flex items-center gap-2 text-primary/70 group-hover:text-primary transition-colors duration-500 bg-primary/5 group-hover:bg-primary/10 px-3 py-1.5 rounded-xl">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span className="text-sm font-semibold">{folder.images.length}</span>
+                      </div>
+                    </div>
+
+                    {/* Enhanced description */}
                     {folder.description && (
-                      <p className="text-muted-foreground text-sm mb-2 line-clamp-2">{folder.description}</p>
+                      <p className="text-muted-foreground text-sm mb-5 line-clamp-2 leading-relaxed group-hover:text-muted-foreground/90 transition-colors duration-500">
+                        {folder.description}
+                      </p>
                     )}
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {folder.images.length} gambar • {new Date(folder.created_at).toLocaleDateString('id-ID', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </p>
+
+                    {/* Enhanced footer with better layout */}
+                    <div className="flex items-center justify-between pt-4 border-t border-border/30">
+                      <div className="flex items-center gap-2 text-muted-foreground/80 text-xs bg-secondary/30 px-3 py-1.5 rounded-lg">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span className="font-medium">{new Date(folder.created_at).toLocaleDateString('id-ID', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}</span>
+                      </div>
+
+                      <div className="flex items-center gap-2 text-primary/70 group-hover:text-primary transition-colors duration-500 bg-primary/5 group-hover:bg-primary/10 px-4 py-2 rounded-xl hover:px-5 transition-all duration-300">
+                        <span className="text-xs font-semibold">Lihat Album</span>
+                        <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -206,59 +258,115 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Image Modal */}
+      {/* Modern Light Image Modal - Unified Mobile & Desktop Design */}
       <Dialog open={!!selectedFolder} onOpenChange={(open) => !open && setSelectedFolder(null)}>
-        <DialogContent className="max-w-5xl max-h-[90vh] p-0 border-0">
-          <div className="relative w-full h-full bg-black/95 rounded-lg overflow-hidden">
-            {/* Close Button */}
-            <button
-              onClick={() => setSelectedFolder(null)}
-              className="absolute top-4 right-4 z-50 bg-white/10 hover:bg-white/20 text-white p-2 rounded-full transition-colors"
-            >
-              <X size={24} />
-            </button>
+        <DialogContent className="w-[95vw] max-w-lg max-h-[85vh] p-0 border-0 bg-background/95 backdrop-blur-xl [&>button]:hidden rounded-xl overflow-hidden">
+          <div className="relative w-full h-full flex flex-col">
+            {/* Header with Folder Info */}
+            <div className="bg-card/80 backdrop-blur-sm border-b border-border/50 p-3 flex-shrink-0">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
+                    <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h2 className="text-sm font-bold text-foreground truncate">{selectedFolder?.name}</h2>
+                  </div>
+                </div>
 
-            {/* Navigation Buttons */}
-            {selectedFolder && selectedFolder.images.length > 1 && (
-              <>
+                {/* Close Button */}
                 <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-50 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-colors"
+                  onClick={() => setSelectedFolder(null)}
+                  className="p-2 rounded-full hover:bg-secondary transition-colors flex-shrink-0"
                 >
-                  ‹
+                  <X size={20} className="text-muted-foreground" />
                 </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-50 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-colors"
-                >
-                  ›
-                </button>
-              </>
-            )}
+              </div>
+            </div>
 
-            {/* Main Image */}
-            <div className="flex items-center justify-center min-h-[60vh] p-4">
+            {/* Main Image Display */}
+            <div className="relative flex-1 bg-muted/30 min-h-0 overflow-hidden">
+              {/* Navigation Buttons */}
+              {selectedFolder && selectedFolder.images.length > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-2 rounded-full transition-all duration-200 hover:scale-110"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-2 rounded-full transition-all duration-200 hover:scale-110"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
+
+              {/* Main Image */}
+              <div className="flex items-center justify-center h-full p-2 pb-14">
+                {selectedFolder && selectedFolder.images[selectedImageIndex] && (
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <img
+                      src={selectedFolder.images[selectedImageIndex].image_url}
+                      alt={selectedFolder.images[selectedImageIndex].title}
+                      className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Image Info Overlay - Fixed at bottom above thumbnail */}
               {selectedFolder && selectedFolder.images[selectedImageIndex] && (
-                <img
-                  src={selectedFolder.images[selectedImageIndex].image_url}
-                  alt={selectedFolder.images[selectedImageIndex].title}
-                  className="max-w-full max-h-[70vh] object-contain"
-                />
+                <div className="absolute bottom-10 left-2 right-2 bg-card/95 backdrop-blur-sm border border-border/50 rounded-lg p-2 shadow-lg z-30">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-muted-foreground text-xs">
+                        {new Date(selectedFolder.images[selectedImageIndex].created_at).toLocaleDateString('id-ID', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded-full">
+                        {selectedImageIndex + 1} / {selectedFolder.images.length}
+                      </span>
+                      <Button
+                        onClick={handleDownload}
+                        disabled={downloading}
+                        size="sm"
+                        className="bg-primary hover:bg-primary/90 text-xs px-2 h-7"
+                      >
+                        <Download className="w-3 h-3 mr-1" />
+                        {downloading ? '...' : 'Unduh'}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
 
-            {/* Thumbnails */}
+            {/* Thumbnail Strip */}
             {selectedFolder && selectedFolder.images.length > 1 && (
-              <div className="absolute bottom-20 left-0 right-0 p-4">
-                <div className="flex justify-center gap-2 overflow-x-auto max-w-full">
+              <div className="bg-card/50 border-t border-border/50 p-2 flex-shrink-0">
+                <div className="flex justify-center gap-2 overflow-x-auto max-w-full pb-1 px-2">
                   {selectedFolder.images.map((image, index) => (
                     <button
                       key={image.id}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
                         index === selectedImageIndex
-                          ? 'border-white shadow-lg scale-110'
-                          : 'border-white/30 hover:border-white/60'
+                          ? 'border-primary shadow-md scale-105'
+                          : 'border-border hover:border-primary/50'
                       }`}
                     >
                       <img
@@ -271,40 +379,6 @@ const Gallery = () => {
                 </div>
               </div>
             )}
-
-            {/* Footer with Info and Download Button */}
-            <div className="bg-gradient-to-t from-black/80 to-transparent p-6 absolute bottom-0 left-0 right-0">
-              <div className="flex justify-between items-center mb-2">
-                <h3 className="text-white font-bold text-xl">{selectedFolder?.name}</h3>
-                {selectedFolder && (
-                  <span className="text-white/70 text-sm">
-                    {selectedImageIndex + 1} / {selectedFolder.images.length}
-                  </span>
-                )}
-              </div>
-              {selectedFolder && selectedFolder.images[selectedImageIndex] && (
-                <>
-                  <h4 className="text-white/90 font-medium text-lg mb-1">
-                    {selectedFolder.images[selectedImageIndex].title}
-                  </h4>
-                  <p className="text-white/70 text-sm mb-4">
-                    {new Date(selectedFolder.images[selectedImageIndex].created_at).toLocaleDateString('id-ID', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </p>
-                </>
-              )}
-              <Button
-                onClick={handleDownload}
-                disabled={downloading}
-                className="bg-[#871C1C] hover:bg-[#6b1818] text-white w-full"
-              >
-                <Download className="mr-2 h-4 w-4" />
-                {downloading ? 'Mengunduh...' : 'Unduh Gambar'}
-              </Button>
-            </div>
           </div>
         </DialogContent>
       </Dialog>

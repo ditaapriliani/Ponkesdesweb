@@ -1,10 +1,14 @@
-import { CheckCircle, Target, Eye, Phone, Mail, Clock } from "lucide-react";
+import { CheckCircle, Target, Eye, Phone, Mail, Clock, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import nurseImage from "@/assets/nurse-1.jpg";
 import bidanImage from "@/assets/bidan-1.jpg";
 import headerBg from "@/assets/header-bg.png";
 import { branding } from "@/config/branding";
+import { brandingfooter } from "@/config/brandingfooter";
 
 const Tentang = () => {
+  const currentYear = new Date().getFullYear();
+
   const features = [
     "Tenaga kesehatan profesional dan berpengalaman",
     "Pelayanan ramah dan bersahabat",
@@ -51,7 +55,7 @@ const Tentang = () => {
   ];
 
   return (
-    <div className="pt-20 min-h-screen bg-background">
+    <div className="pt-20 min-h-screen bg-background w-full">
       {/* Header */}
       <div
         className="relative py-16 md:py-24 overflow-hidden"
@@ -191,7 +195,7 @@ const Tentang = () => {
       </div>
 
       {/* Alur Pelayanan Section */}
-      <div className="py-16 md:py-24 bg-secondary/30">
+      <div className="py-16 md:py-24 bg-secondary/30 flex-grow">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Alur <span className="text-gradient">Pelayanan</span> & Struktur <span className="text-gradient">Organisasi</span></h2>
@@ -206,7 +210,7 @@ const Tentang = () => {
                 className="w-full h-auto"
               />
             </div>
-            
+
             {/* Struktur Organisasi */}
             <div className="bg-card rounded-2xl p-8 shadow-card border border-border/50 animate-slide-in-right flex items-center justify-center">
               <img
@@ -218,6 +222,8 @@ const Tentang = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer dihapus - menggunakan Footer dari Layout.tsx */}
     </div>
   );
 };

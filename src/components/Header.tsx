@@ -80,25 +80,25 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 border-b border-border">
-      <div className="container mx-auto px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 border-b border-border w-full">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-2 md:gap-3">
             {branding.logo.type === "image" ? (
               <img
                 src={branding.logo.imagePath}
                 alt={branding.name}
-                className="w-10 h-10 md:w-12 md:h-12 object-contain"
+                className="w-8 h-8 md:w-12 md:h-12 object-contain"
               />
             ) : (
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg md:text-xl">{branding.logo.icon}</span>
+              <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-base md:text-xl">{branding.logo.icon}</span>
               </div>
             )}
             <div className="flex flex-col">
-              <span className="font-bold text-foreground text-lg md:text-xl leading-tight">{branding.name}</span>
-              <span className="text-xs text-muted-foreground hidden sm:block">{branding.description}</span>
+              <span className="font-bold text-foreground text-base md:text-xl leading-tight">{branding.name}</span>
+              <span className="text-xs text-muted-foreground hidden md:block">{branding.description}</span>
             </div>
           </Link>
 
