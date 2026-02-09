@@ -4,6 +4,8 @@ import { supabase } from "@/lib/supabaseClient";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Download, X } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+
 
 interface GalleryFolder {
   id: number;
@@ -27,6 +29,8 @@ const Gallery = () => {
   const [selectedFolder, setSelectedFolder] = useState<GalleryFolder | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [downloading, setDownloading] = useState(false);
+  const { toast } = useToast();
+
 
   useEffect(() => {
     loadGallery();
@@ -84,22 +88,74 @@ const Gallery = () => {
 
     try {
       setDownloading(true);
-      const response = await fetch(currentImage.image_url);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${currentImage.title}.jpg`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+
+      // Check if running as PWA or mobile browser
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                          (window.navigator as any).standalone === true;
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isStandalone || isMobile) {
+        // For mobile/PWA: Try Web Share API first, then fallback to opening in new tab
+        try {
+          const response = await fetch(currentImage.image_url);
+          const blob = await response.blob();
+          const file = new File([blob], `${currentImage.title}.jpg`, { type: 'image/jpeg' });
+
+          if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: currentImage.title,
+              text: 'Unduh gambar dari Galeri Ponkesdes'
+            });
+            toast({
+              title: "Berhasil",
+              description: "Gambar berhasil dibagikan",
+            });
+          } else {
+            // Fallback: Open image in new tab for manual save
+            window.open(currentImage.image_url, '_blank');
+            toast({
+              title: "Info",
+              description: "Gambar dibuka di tab baru. Tekan lama pada gambar untuk menyimpan.",
+            });
+          }
+        } catch (shareError) {
+          // If share fails, open in new tab
+          window.open(currentImage.image_url, '_blank');
+          toast({
+            title: "Info",
+            description: "Gambar dibuka di tab baru. Tekan lama pada gambar untuk menyimpan.",
+          });
+        }
+      } else {
+        // Desktop browser: Use traditional download method
+        const response = await fetch(currentImage.image_url);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${currentImage.title}.jpg`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        toast({
+          title: "Berhasil",
+          description: "Gambar berhasil diunduh",
+        });
+      }
     } catch (error) {
       console.error('Error downloading image:', error);
+      toast({
+        title: "Gagal",
+        description: "Gagal mengunduh gambar. Silakan coba lagi.",
+        variant: "destructive",
+      });
     } finally {
       setDownloading(false);
     }
   };
+
 
   const nextImage = () => {
     if (!selectedFolder) return;
